@@ -1,11 +1,12 @@
 const CreateError = require('http-errors')
+// const mongoose = require('mongoose')
 
 const { Shop } = require('../model/shops')
 
 const getShops = async (req, res, next) => {
   try {
     const shops = await Shop.find()
-    console.log(shops)
+        console.log('shops', shops)
     res.status(200).json(shops)
   } catch (error) {
     next(error)
@@ -15,7 +16,12 @@ const getShops = async (req, res, next) => {
 const getShopFromId = async (req, res, next) => {
   try {
     const { shopId } = req.params
+    console.log('shopId', shopId)
+    // const findId = mongoose.Types.ObjectId(shopId)
+    // console.log('findId', findId)
+
     const shop = await Shop.findById(shopId)
+    console.log('shop', shop)
     if (!shop) {
       throw new CreateError(404, 'Not found')
     }

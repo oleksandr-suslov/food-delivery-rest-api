@@ -11,6 +11,9 @@ mongoose
       console.log('Database connection successful')
     })
   )
+  .then(() => {
+    console.log(`Server is on ${PORT}`)
+})
   .catch((error) => {
     console.log(error.message)
     process.exit(1)
